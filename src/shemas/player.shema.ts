@@ -36,7 +36,7 @@ export class Player {
 
   @Prop({ required: true, type: PlayerSkillsSchema })
   @Type(() => PlayerSkills)
-  modifier: PlayerSkills;
+  modifier: Partial<PlayerSkills>;
 }
 
 export const PlayerSchema = SchemaFactory.createForClass(Player);
