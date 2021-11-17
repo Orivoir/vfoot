@@ -65,7 +65,7 @@ export class Team {
     required: true,
     default: 0,
   })
-  recrutingCenter: number;
+  recrutingCenterLevel: number;
 }
 
 export const TeamSchema = SchemaFactory.createForClass(Team);
