@@ -17,10 +17,8 @@ export class User {
 
   @Prop({
     required: true,
-    type: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: Team.name,
-    },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: Team.name,
   })
   @Type(() => Team)
   team: Team;

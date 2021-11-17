@@ -60,7 +60,6 @@ export class Player {
   skills: PlayerSkills;
 
   @Prop({ required: true, type: [PlayerTeamSchema] })
-  @Type(() => PlayerTeam)
   teams: PlayerTeam[];
 }
 
