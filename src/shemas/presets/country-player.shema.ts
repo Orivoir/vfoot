@@ -10,13 +10,10 @@ export class CountryPlayer {
   _id: ObjectId;
 
   @Prop({ required: true })
-  countryName: string;
+  name: string;
 
   @Prop({ required: true })
-  countryNameNormalize: string;
-
-  @Prop({ required: true })
-  countryFlagId: number;
+  id: number;
 }
 
 export const CountryPlayerSchema = SchemaFactory.createForClass(CountryPlayer);

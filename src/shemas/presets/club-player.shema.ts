@@ -10,13 +10,10 @@ export class ClubPlayer {
   _id: ObjectId;
 
   @Prop({ required: true })
-  clubName: string;
+  name: string;
 
   @Prop({ required: true })
-  clubNameNormalize: string;
-
-  @Prop({ required: true })
-  clubFlagId: number;
+  id: number;
 }
 
 export const ClubPlayerSchema = SchemaFactory.createForClass(ClubPlayer);
