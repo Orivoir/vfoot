@@ -9,7 +9,7 @@ export class Ballskills {
   ballControl: number;
 
   @Prop({ required: true })
-  driblling: number;
+  dribbling: number;
 }
 
 export const BallskillsSchema = SchemaFactory.createForClass(Ballskills);

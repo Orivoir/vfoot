@@ -1,8 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, ObjectId } from 'mongoose';
+import * as mongoose from 'mongoose';
 import { Transform, Type } from 'class-transformer';
 import { PlayerSkills, PlayerSkillsSchema } from './player-skills.shema';
 import { PlayerTeam, PlayerTeamSchema } from './player-team.shema';
+import { CountryPlayer } from './country-player.shema';
+import { ClubPlayer } from './club-player.shema';
 
 export type PlayerFootPreset = 'Left' | 'Right';
 export type PlayerPositionPreset =
@@ -24,12 +26,23 @@ export type PlayerPositionPreset =
   | 'CF'
   | 'ST';
 
-export type PlayerDocument = Player & Document;
+export type PlayerDocument = Player & mongoose.Document;
 
 @Schema()
 export class Player {
   @Transform(({ value }) => value.toString())
-  _id: ObjectId;
+  _id: mongoose.ObjectId;
+
+  @Prop({required: true, unique: true})
+  id: number;
+
+  @Prop({required: true, type: mongoose.Schema.Types.ObjectId, ref: CountryPlayer.name})
+  @Type(() => CountryPlayer)
+  country: CountryPlayer;
+
+  @Prop({required: true, type: mongoose.Schema.Types.ObjectId, ref: ClubPlayer.name})
+  @Type(() => ClubPlayer)
+  club: ClubPlayer;
 
   @Prop({ required: true })
   fullName: string;
