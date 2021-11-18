@@ -14,21 +14,21 @@ export class HelperService {
   static DEFAULT_TEAM_RECRUTING_CENTER_LEVEL = 0;
   static DEFAULT_TEAM_STADIUM_LEVEL = 0;
 
-  static DEFAULT_TEAM: Team = {
+  static DEFAULT_TEAM: Omit<Team, '_id'> = {
     amount: HelperService.DEFAULT_TEAM_AMOUNT,
     popularity: HelperService.DEFAULT_TEAM_POPULARITY,
     recrutingCenterLevel: HelperService.DEFAULT_TEAM_RECRUTING_CENTER_LEVEL,
     stadiumLevel: HelperService.DEFAULT_TEAM_STADIUM_LEVEL,
     tasks: [],
     consomables: [],
-    players: []
+    players: [],
   };
 
-  static DEFAULT_PLAYER: Omit<Player, "presetPlayer"> = {
+  static DEFAULT_PLAYER: Omit<Player, 'presetPlayer' | '_id'> = {
     matchRemaining: HelperService.DEFAULT_PLAYER_MATCH_REMAINING,
     power: HelperService.DEFAULT_PLAYER_POWER,
     salary: HelperService.DEFAULT_PLAYER_SALARY,
     woundRemaining: HelperService.DEFAULT_PLAYER_WOUND_REMAINING,
-    modifier: {}
+    modifier: {},
   };
 }

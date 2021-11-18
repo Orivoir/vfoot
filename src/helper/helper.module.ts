@@ -3,6 +3,6 @@ import { HelperService } from './helper.service';
 
 @Module({
   providers: [HelperService],
-  exports: [HelperService]
+  exports: [HelperService],
 })
 export class HelperModule {}

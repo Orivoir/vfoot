@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Exclude, Type } from 'class-transformer';
+import { Type } from 'class-transformer';
 import { PlayerSkills, PlayerSkillsSchema } from './player-skills.shema';
 import { PlayerTeam, PlayerTeamSchema } from './player-team.shema';
 import { CountryPlayer } from './country-player.shema';
@@ -32,13 +32,21 @@ export type PlayerDocument = Player & mongoose.Document;
 export class Player {
   _id: mongoose.ObjectId;
 
-  @Prop({required: true, unique: true})
+  @Prop({ required: true, unique: true })
   id: number;
 
-  @Prop({required: true, type: mongoose.Schema.Types.ObjectId, ref: CountryPlayer.name})
+  @Prop({
+    required: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: CountryPlayer.name,
+  })
   country: CountryPlayer;
 
-  @Prop({required: true, type: mongoose.Schema.Types.ObjectId, ref: ClubPlayer.name})
+  @Prop({
+    required: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: ClubPlayer.name,
+  })
   club: ClubPlayer;
 
   @Prop({ required: true })

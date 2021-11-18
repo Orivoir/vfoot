@@ -3,7 +3,6 @@ import * as mongoose from 'mongoose';
 import { Player } from './player.shema';
 import { Consomable } from './presets/consomable';
 import { Task } from './task.shema';
-import { Exclude } from 'class-transformer';
 
 export type TeamDocument = Team & mongoose.Document;
 
@@ -46,7 +45,7 @@ export class Team {
   })
   tasks: Task[];
 
-  @Prop({required: false})
+  @Prop({ required: false })
   name?: string;
 
   @Prop({

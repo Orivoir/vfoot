@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Exclude, Transform, Type } from 'class-transformer';
+import { Type } from 'class-transformer';
 import { Player as PresetPlayer } from './presets/player.shema';
 import {
   PlayerSkills,
