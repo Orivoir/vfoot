@@ -1,13 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Transform, Type } from 'class-transformer';
+import { Exclude, Type } from 'class-transformer';
 import { Team } from './team.shema';
 
 export type UserDocument = User & mongoose.Document;
 
 @Schema()
 export class User {
-  @Transform(({ value }) => value.toString())
   _id: mongoose.ObjectId;
 
   @Prop({
@@ -20,8 +19,11 @@ export class User {
     type: mongoose.Schema.Types.ObjectId,
     ref: Team.name,
   })
-  @Type(() => Team)
   team: Team;
+
+  constructor(userPartial: Partial<User>) {
+    Object.assign(this, userPartial);
+  }
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

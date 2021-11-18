@@ -3,11 +3,14 @@ import * as mongoose from 'mongoose';
 import { Player } from './player.shema';
 import { Consomable } from './presets/consomable';
 import { Task } from './task.shema';
+import { Exclude } from 'class-transformer';
 
 export type TeamDocument = Team & mongoose.Document;
 
 @Schema()
 export class Team {
+  _id: mongoose.ObjectId;
+
   @Prop({
     required: true,
     type: [
@@ -43,6 +46,9 @@ export class Team {
   })
   tasks: Task[];
 
+  @Prop({required: false})
+  name?: string;
+
   @Prop({
     required: true,
     default: 2000,
@@ -66,6 +72,10 @@ export class Team {
     default: 0,
   })
   recrutingCenterLevel: number;
+
+  constructor(teamPartial: Partial<Team>) {
+    Object.assign(this, teamPartial);
+  }
 }
 
 export const TeamSchema = SchemaFactory.createForClass(Team);

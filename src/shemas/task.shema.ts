@@ -6,7 +6,6 @@ export type TaskDocument = Task & Document;
 
 @Schema()
 export class Task {
-  @Transform(({ value }) => value.toString())
   _id: ObjectId;
 
   @Prop({ required: true })

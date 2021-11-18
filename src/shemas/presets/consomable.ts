@@ -5,7 +5,6 @@ export type ConsomableDocument = Consomable & Document;
 
 @Schema()
 export class Consomable {
-  @Transform(({ value }) => value.toString())
   _id: ObjectId;
 
   @Prop({ required: true })

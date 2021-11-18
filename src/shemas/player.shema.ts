@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Type } from 'class-transformer';
+import { Exclude, Transform, Type } from 'class-transformer';
 import { Player as PresetPlayer } from './presets/player.shema';
 import {
   PlayerSkills,
@@ -11,6 +11,8 @@ export type PlayerDocument = Player & mongoose.Document;
 
 @Schema()
 export class Player {
+  _id: mongoose.ObjectId;
+
   @Prop({
     required: true,
     type: mongoose.Schema.Types.ObjectId,
@@ -35,8 +37,11 @@ export class Player {
   exitAt?: number;
 
   @Prop({ required: true, type: PlayerSkillsSchema })
-  @Type(() => PlayerSkills)
   modifier: Partial<PlayerSkills>;
+
+  constructor(playerPartial: Partial<Player>) {
+    Object.assign(this, playerPartial);
+  }
 }
 
 export const PlayerSchema = SchemaFactory.createForClass(Player);
