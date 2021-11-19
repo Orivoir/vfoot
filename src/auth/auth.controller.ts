@@ -31,10 +31,8 @@ export class AuthController {
           const googleUser: TokenPayload | undefined = loginTicket.getPayload();
 
           if (googleUser) {
-            this.userModel
-              .findOne({
-                googleId: googleUser.sub,
-              })
+            this.authService
+              .getUser(googleUser.sub)
               .then((userFind) => {
                 if (userFind) {
                   resolve(
