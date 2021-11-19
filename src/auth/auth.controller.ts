@@ -9,8 +9,6 @@ import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { LoginTicket, TokenPayload } from 'google-auth-library';
 import { Model } from 'mongoose';
-import { HelperService } from 'src/helper/helper.service';
-import { Team, TeamDocument } from 'src/shemas/team.shema';
 import { User, UserDocument } from 'src/shemas/user.shema';
 import { AuthService } from './auth.service';
 
@@ -20,7 +18,6 @@ export class AuthController {
     private authService: AuthService,
     private configService: ConfigService,
     @InjectModel(User.name) private userModel: Model<UserDocument>,
-    @InjectModel(Team.name) private teamModel: Model<TeamDocument>,
   ) {}
 
   @Get()
@@ -44,15 +41,12 @@ export class AuthController {
                     this.authService.createResponse(userFind, googleUser),
                   );
                 } else {
-                  this.userModel
-                    .create({
-                      googleId: googleUser.sub,
-                      team: HelperService.DEFAULT_TEAM,
-                    })
-                    .then((userCreated): void => {
+                  this.authService
+                    .createDefaultUser(googleUser.sub)
+                    .then((createdUser: UserDocument): void => {
                       resolve(
                         this.authService.createResponse(
-                          userCreated,
+                          createdUser,
                           googleUser,
                         ),
                       );
