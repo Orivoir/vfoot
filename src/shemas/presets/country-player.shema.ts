@@ -10,10 +10,10 @@ export class CountryPlayer {
   _id: ObjectId;
 
   @Prop({ required: true })
-  name: string;
+  name: string; // original country in english lang e.g: "French"
 
   @Prop({ required: true })
-  id: number;
+  id: number; // uniq country id use for build country flag image URL
 }
 
 export const CountryPlayerSchema = SchemaFactory.createForClass(CountryPlayer);

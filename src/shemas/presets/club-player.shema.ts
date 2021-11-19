@@ -13,7 +13,7 @@ export class ClubPlayer {
   name: string;
 
   @Prop({ required: true })
-  id: number;
+  id: number; // uniq club id use or build club logo image URL
 }
 
 export const ClubPlayerSchema = SchemaFactory.createForClass(ClubPlayer);

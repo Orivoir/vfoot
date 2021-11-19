@@ -33,7 +33,7 @@ export class PresetPlayer {
   _id: mongoose.ObjectId;
 
   @Prop({ required: true, unique: true })
-  id: number;
+  id: number; //  uniq player id use for build player image URL
 
   @Prop({
     required: true,
@@ -50,22 +50,22 @@ export class PresetPlayer {
   club: ClubPlayer;
 
   @Prop({ required: true })
-  fullName: string;
+  fullName: string; // with format: "{firstName} {lastName}"
 
   @Prop({ required: true, type: [Number] })
   rangeRank: [number, number];
 
   @Prop({ required: true })
-  height: number;
+  height: number; // centimeters
 
   @Prop({ required: true })
-  weight: number;
+  weight: number; // kilograms
 
   @Prop({ required: true, type: String })
   preferredFoot: PlayerFootPreset;
 
   @Prop({ required: true })
-  bornAt?: number;
+  bornAt?: number; // timestamp ms
 
   @Prop({ required: true, type: [String] })
   preferredPositions: PlayerPositionPreset[];
