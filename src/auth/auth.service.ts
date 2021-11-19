@@ -3,14 +3,14 @@ import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { LoginTicket, OAuth2Client, TokenPayload } from 'google-auth-library';
 import { Document, Model } from 'mongoose';
-import { HelperService } from 'src/helper/helper.service';
+import { HelperService } from './../helper/helper.service';
 import {
   PresetPlayer,
   PresetPlayerDocument,
-} from 'src/shemas/presets/player.shema';
-import { Player, PlayerDocument } from 'src/shemas/player.shema';
-import { User, UserDocument } from 'src/shemas/user.shema';
-import { Team, TeamDocument } from 'src/shemas/team.shema';
+} from './../shemas/presets/player.shema';
+import { Player, PlayerDocument } from './../shemas/player.shema';
+import { User, UserDocument } from './../shemas/user.shema';
+import { Team, TeamDocument } from './../shemas/team.shema';
 
 @Injectable()
 export class AuthService {
@@ -82,10 +82,9 @@ export class AuthService {
     return await Promise.all(
       insertedPlayers.map(
         (insertedPlayer: PlayerDocument): Promise<PlayerDocument> => {
-          return insertedPlayer.populate({
-            path: 'presetPlayer',
-            populate: [{ path: 'country' }, { path: 'club' }],
-          });
+          return insertedPlayer.populate(
+            HelperService.MONGO_POPULATE_FROM_PLAYER,
+          );
         },
       ),
     );
@@ -112,6 +111,12 @@ export class AuthService {
     const insertedUser: UserDocument = await this.userModel.create(user);
 
     return insertedUser;
+  }
+
+  async getUser(googleId: string): Promise<UserDocument | null> {
+    return await this.userModel
+      .findOne({ googleId })
+      .populate(HelperService.MONGO_POPULATE_FROM_USER);
   }
 
   verify(idToken: string): Promise<LoginTicket> {
