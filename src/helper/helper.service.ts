@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Team } from 'src/shemas/team.shema';
 import { Player } from 'src/shemas/player.shema';
+import { PopulateOptions } from 'mongoose';
 
 @Injectable()
 export class HelperService {
@@ -31,5 +32,22 @@ export class HelperService {
     power: HelperService.DEFAULT_PLAYER_POWER,
     salary: HelperService.DEFAULT_PLAYER_SALARY,
     woundRemaining: HelperService.DEFAULT_PLAYER_WOUND_REMAINING,
+  };
+
+  static MONGO_POPULATE_FROM_PLAYER: PopulateOptions = {
+    path: 'presetPlayer',
+    populate:  [{ path: 'country' }, { path: 'club' }]
+  };
+
+  static MONGO_POPULATE_FROM_USER: PopulateOptions = {
+    path: 'team',
+    populate: [
+      { path: 'consomables' },
+      { path: 'tasks' },
+      {
+        path: 'players',
+        populate: HelperService.MONGO_POPULATE_FROM_PLAYER,
+      },
+    ],
   };
 }
