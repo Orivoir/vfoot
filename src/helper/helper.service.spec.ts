@@ -29,6 +29,4 @@ describe('HelperService', () => {
     expect(HelperService.DEFAULT_TEAM_RECRUTING_CENTER_LEVEL).toEqual(0);
     expect(HelperService.DEFAULT_TEAM_STADIUM_LEVEL).toEqual(0);
   });
-
-  it.skip('should has static attributes for default team');
 });
