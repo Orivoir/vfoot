@@ -26,10 +26,10 @@ export type PlayerPositionPreset =
   | 'CF'
   | 'ST';
 
-export type PlayerDocument = Player & mongoose.Document;
+export type PresetPlayerDocument = PresetPlayer & mongoose.Document;
 
 @Schema()
-export class Player {
+export class PresetPlayer {
   _id: mongoose.ObjectId;
 
   @Prop({ required: true, unique: true })
@@ -80,9 +80,9 @@ export class Player {
   @Prop({ required: true, type: [PlayerTeamSchema] })
   teams: PlayerTeam[];
 
-  constructor(playerPartial: Partial<Player>) {
+  constructor(playerPartial: Partial<PresetPlayer>) {
     Object.assign(this, playerPartial);
   }
 }
 
-export const PlayerSchema = SchemaFactory.createForClass(Player);
+export const PresetPlayerSchema = SchemaFactory.createForClass(PresetPlayer);
