@@ -18,6 +18,8 @@ import {
   ClubPlayer,
   ClubPlayerSchema,
 } from 'src/shemas/presets/club-player.shema';
+import { Consomable, ConsomableSchema } from 'src/shemas/presets/consomable';
+import { Task, TaskSchema } from 'src/shemas/task.shema';
 
 @Module({
   imports: [
@@ -46,6 +48,14 @@ import {
       {
         name: Player.name,
         schema: PlayerSchema,
+      },
+      {
+        name: Consomable.name,
+        schema: ConsomableSchema,
+      },
+      {
+        name: Task.name,
+        schema: TaskSchema,
       },
     ]),
   ],
