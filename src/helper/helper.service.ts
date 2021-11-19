@@ -13,6 +13,8 @@ export class HelperService {
   static DEFAULT_TEAM_POPULARITY = 50;
   static DEFAULT_TEAM_RECRUTING_CENTER_LEVEL = 0;
   static DEFAULT_TEAM_STADIUM_LEVEL = 0;
+  static DEFAULT_TEAM_MAX_RANK_PLAYERS = 66;
+  static DEFAULT_TEAM_COUNT_PLAYERS = 18;
 
   static DEFAULT_TEAM: Omit<Team, '_id'> = {
     amount: HelperService.DEFAULT_TEAM_AMOUNT,
@@ -29,6 +31,5 @@ export class HelperService {
     power: HelperService.DEFAULT_PLAYER_POWER,
     salary: HelperService.DEFAULT_PLAYER_SALARY,
     woundRemaining: HelperService.DEFAULT_PLAYER_WOUND_REMAINING,
-    modifier: {},
   };
 }
