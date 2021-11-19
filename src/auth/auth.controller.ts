@@ -9,7 +9,7 @@ import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { LoginTicket, TokenPayload } from 'google-auth-library';
 import { Model } from 'mongoose';
-import { User, UserDocument } from 'src/shemas/user.shema';
+import { User, UserDocument } from './../shemas/user.shema';
 import { AuthService } from './auth.service';
 
 @Controller('auth')

@@ -36,7 +36,7 @@ export class HelperService {
 
   static MONGO_POPULATE_FROM_PLAYER: PopulateOptions = {
     path: 'presetPlayer',
-    populate:  [{ path: 'country' }, { path: 'club' }]
+    populate: [{ path: 'country' }, { path: 'club' }],
   };
 
   static MONGO_POPULATE_FROM_USER: PopulateOptions = {
